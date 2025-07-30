@@ -2,30 +2,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: python-service
+  name: python-microservice
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: python-service
+      app: python-microservice
   template:
     metadata:
       labels:
-        app: python-service
+        app: python-microservice
     spec:
       containers:
         - name: python-container
-          image: python-service:latest
+          image: dodaharsha/python-microservice:v1
           ports:
             - containerPort: 5000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: python-service
+  name: python-microservice
 spec:
   selector:
-    app: python-service
+    app: python-microservice
   ports:
     - port: 80
       targetPort: 5000
